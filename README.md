@@ -74,16 +74,16 @@ with open('news_passwords.csv', 'w') as new_password_obj:
 """
     new_password_obj.write(slash_null_sig)
 
-**Requirements**
+Requirements
 Python 3.x
 csv module (standard library)
 json module (standard library)
-**How to Run**
+How to Run
 Ensure you have Python 3.x installed.
 Place the passwords.csv file in the same directory as the script.
 Run the script using the command: python script.py
 Check the output files: compromised_users.txt, boss_message.json, and news_passwords.csv.
-**License**
+License
 This project is licensed under the MIT License.
 
 ```
