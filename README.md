@@ -24,3 +24,52 @@ This project is designed to detect compromised user accounts from a CSV file con
 
 3. **Scramble Passwords**:
    - A new CSV file (`news_passwords.csv`) is generated with scrambled password data to prevent further misuse.
+
+## Code Explanation
+```python
+import csv
+import json
+
+# List to store compromised usernames
+compromised_users = []
+
+# Read the passwords CSV file
+with open('passwords.csv', 'r') as password_file:
+    password_csv = csv.DictReader(password_file)
+    for password_row in password_csv:
+        compromised_users.append(password_row['Username'])
+
+# Write compromised usernames to a text file
+with open("compromised_users.txt", "w") as compromised_user_file:
+    for compromised_user in compromised_users:
+        compromised_user_file.write(compromised_user + '\n')
+
+# Notify the boss by creating a JSON file
+with open('boss_message.json', "w") as boss_message:
+    boss_message_dict = {
+        "recipient": "The boss",
+        "message": "Mission Success"
+    }
+    json.dump(boss_message_dict, boss_message)
+
+# Scramble the passwords and write to a new CSV file
+with open('news_passwords.csv', 'w') as new_password_obj:
+    slash_null_sig = """
+ _  _     ___   __  ____             
+/ )( \   / __) /  \(_  _)            
+) \/ (  ( (_ \(  O ) )(              
+\____/   \___/ \__/ (__)             
+ _  _   __    ___  __ _  ____  ____  
+/ )( \ / _\  / __)(  / )(  __)(    \ 
+) __ (/    \( (__  )  (  ) _)  ) D ( 
+\_)(_/\_/\_/ \___)(__\_)(____)(____/ 
+        ____  __     __   ____  _  _ 
+ ___   / ___)(  )   / _\ / ___)/ )( \
+(___)  \___ \/ (_/\/    \\___ \) __ (
+       (____/\____/\_/\_/(____/\_)(_/
+ __ _  _  _  __    __                
+(  ( \/ )( \(  )  (  )               
+/    /) \/ (/ (_/\/ (_/\             
+\_)__)\____/\____/\____/
+"""
+    new_password_obj.write(slash_null_sig)
